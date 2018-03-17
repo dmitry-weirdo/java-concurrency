@@ -28,7 +28,9 @@ public class FairLock {
             }
 
             try {
-                queueObject.doWait(); // calls wait on queueObject instance (using it as object monitor). Note this is synchronized on QueueObject, not on Lock (this).
+                // calls wait on queueObject instance (using it as object monitor).
+                // Note this is synchronized on QueueObject, not on Lock (this). This will prevent nested monitor lockout (other thread can call unlock() in this moment and it won't hang.
+                queueObject.doWait();
             }
             catch (final InterruptedException e) {
                 synchronized (this) {
@@ -49,7 +51,7 @@ public class FairLock {
         lockingThread = null;
 
         if ( !waitingThreads.isEmpty() ) {
-            waitingThreads.get(0).doNotify(); // call notify() on first QueueObject in the queue
+            waitingThreads.get(0).doNotify(); // call notify() on first QueueObject in the queue. It is synchronized on QueueObject
         }
     }
 }
