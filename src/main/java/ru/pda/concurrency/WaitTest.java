@@ -42,12 +42,7 @@ public class WaitTest {
         public void doNotify(final Thread waitingThread) {
             synchronized (lock) {
                 logWithCurrentThreadName("doNotify: before notify(). Waiting thread state: " + waitingThread.getState()); // t1 state will be WAITING
-                try {
-                    lock.notify();
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
+                lock.notify(); // notify does not throw InterruptedException
 
                 logWithCurrentThreadName("doNotify: called notify(). Waiting thread state: " + waitingThread.getState()); // t1 state will be BLOCKED since it's waiting for lock monitor to be released
                 logWithCurrentThreadName("Sleeping...");
