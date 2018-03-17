@@ -1,9 +1,9 @@
 package ru.pda.concurrency;
 
 public class WaitTest {
-    private final static Object lock = new Object();
+    private static final Object lock = new Object();
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final WaitTestObject object = new WaitTestObject();
 
         final Thread t1 = new Thread(object::doWait);
@@ -31,7 +31,7 @@ public class WaitTest {
                     logWithCurrentThreadName("doWait: before wait");
                     lock.wait(); // this will release lock monitor
                 }
-                catch (InterruptedException e) {
+                catch (final InterruptedException e) {
                     e.printStackTrace();
                 }
 
@@ -50,14 +50,14 @@ public class WaitTest {
                 try {
                     Thread.sleep(3000);
                 }
-                catch (InterruptedException e) {
+                catch (final InterruptedException e) {
                     e.printStackTrace();
                 }
 
                 logWithCurrentThreadName("doNotify: sleep finished. Existing the synchronized block.");
             }
 
-            // wait thread is notified only after notifiying thread has released the lock
+            // wait thread is notified only after notifying thread has released the lock
             logWithCurrentThreadName("doNotify: released lock. Waiting thread state: " + waitingThread.getState()); // BLOCKED (but it will still become RUNNABLE)
         }
     }

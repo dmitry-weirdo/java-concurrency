@@ -1,16 +1,16 @@
 package ru.pda.concurrency;
 
-public class InheritableThreadLocalTest {
+public final class InheritableThreadLocalTest {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(final String[] args) throws InterruptedException {
         final MyThread thread = new MyThread();
         thread.start();
         thread.join();
     }
 
     static class MyThread extends Thread {
-        private static ThreadLocal<String> threadLocal = new ThreadLocal<>();
-        private static InheritableThreadLocal<String> inheritableThreadLocal = new InheritableThreadLocal<>();
+        private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
+        private static final InheritableThreadLocal<String> inheritableThreadLocal = new InheritableThreadLocal<>();
 
         static final Object lock = new Object();
 
@@ -25,7 +25,7 @@ public class InheritableThreadLocalTest {
             try {
                 Thread.sleep(200);
             }
-            catch (InterruptedException e) {
+            catch (final InterruptedException e) {
                 e.printStackTrace();
             }
 
@@ -41,7 +41,7 @@ public class InheritableThreadLocalTest {
             try {
                 subThread.join();
             }
-            catch (InterruptedException e) {
+            catch (final InterruptedException e) {
                 e.printStackTrace();
             }
 
@@ -62,7 +62,7 @@ public class InheritableThreadLocalTest {
             try {
                 Thread.sleep(1000);
             }
-            catch (InterruptedException e) {
+            catch (final InterruptedException e) {
                 e.printStackTrace();
             }
 

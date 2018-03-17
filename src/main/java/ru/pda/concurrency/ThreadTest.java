@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ThreadTest {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(final String[] args) throws InterruptedException {
         System.out.println("num of processors: " + Runtime.getRuntime().availableProcessors());
 
 
@@ -15,7 +15,7 @@ public class ThreadTest {
                 Thread.sleep(5000);
                 System.out.println( Thread.currentThread().getName() + " - after sleep" );
             }
-            catch (InterruptedException e) {
+            catch (final InterruptedException e) {
                 e.printStackTrace();
             }
 
@@ -32,7 +32,7 @@ public class ThreadTest {
             try {
                 thread.join();
             }
-            catch (InterruptedException e) {
+            catch (final InterruptedException e) {
                 e.printStackTrace();
             }
 
