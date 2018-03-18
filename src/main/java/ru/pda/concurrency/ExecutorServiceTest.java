@@ -39,7 +39,7 @@ public final class ExecutorServiceTest {
         System.out.println("Checking future results.");
         for (final Future<String> future : futureList) {
             System.out.println("=======================");
-            System.out.printf("Future done: %b, cancelled: %b\n", future.isDone(), future.isCancelled() );
+            System.out.printf( "Future done: %b, cancelled: %b\n", future.isDone(), future.isCancelled() );
 
             try {
                 final String result = future.get(); // using get() with timeout + TimeoutException has no sense in this case since invokeAll returns all completed tasks
