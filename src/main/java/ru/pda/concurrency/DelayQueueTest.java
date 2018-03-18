@@ -56,7 +56,7 @@ public final class DelayQueueTest {
         }
 
         @Override
-        public int compareTo(final Delayed o) { /// !!! this implementation. Otherwise the DelayQueue "order by delay" logic won't work.
+        public int compareTo(final Delayed o) { /// !!! this implementation must be consistent with #getDelay() implementation. Otherwise the DelayQueue "order by delay" logic won't work. @see Delayed javadoc
             return Long.compare( this.getDelay(TimeUnit.MILLISECONDS), o.getDelay(TimeUnit.MILLISECONDS) );
         }
     }
